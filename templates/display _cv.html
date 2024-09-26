@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Rob Roy CV</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            .heading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                margin: 0;
+            }
+
+            .iframe {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin: 0;
+                padding:0;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                width: 60vw;
+                height:90vh;
+            }
+            
+            .opening_paragraph {
+                padding-left:20px;
+            }
+
+            .full_screen_button {
+                width: 20vh;
+                margin: 5px;
+            }
+    
+            iframe {
+                border: none;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            img{
+                margin:5px
+            }
+        </style>
+    </head>
+    <body>
+        <div class="heading">
+            <img src="{{ url_for('static', filename='quicklyLogo.png') }}" height="80" width="80" />
+            <h1>Rob Roy QuicklySign Application</h1>
+        </div>
+        <hr/>
+
+        <p class="opening_paragraph">
+            Thank you for taking the time to look over my application
+        </p>
+
+        <div class= 'iframe'>
+            <div class='container'>
+                <button onclick="openFullscreen()" class="full_screen_button">View Fullscreen</button> 
+                <iframe id="pdf-frame" src="{{ url_for('static', filename='Rob_Roy_Resume.pdf') }}" width="100%" height="100%" allowfullscreen></iframe>
+            </div>
+        </div>           
+        <script>
+
+            // JavaScript to trigger fullscreen
+            function openFullscreen() {
+                var iframe = document.getElementById("pdf-frame");
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) { // Firefox
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { // IE/Edge
+                    iframe.msRequestFullscreen();
+                }
+            }
+        </script>
+    </body>
+</html>
